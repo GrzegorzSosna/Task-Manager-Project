@@ -1,0 +1,116 @@
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+    background-image: url('/images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 60px;
+    background: none; /* Ensure the body's background doesn't override the html background */
+}
+
+
+
+
+
+.header .navbar {
+    background-color: #343a40 !important; /* Dark gray background for the navbar */
+}
+
+.header .navbar-brand,
+.header .nav-link,
+.header .navbar-toggler-icon {
+    color: white !important; /* White text color for the brand and links */
+}
+
+.header .navbar-toggler {
+    border-color: white; /* White border for the toggler */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container {
+    background: rgba(255, 255, 255, 0.8); /* White background with opacity for readability */
+    padding: 20px; /* Padding for spacing */
+    border-radius: 8px; /* Optional: Rounded corners for aesthetics */
+}
+
+.footer .container {
+    background: none; 
+    opacity: 1; /* Ensure no transparency */
+    padding: 10px; /* Padding for footer content */
+    border-radius: 0; /* Reset border-radius if necessary */
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+
+
+
+
+/*
+
+html {
+    font-size: 14px;
+
+    position: relative;
+    min-height: 100%;
+    background-image: url('/images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+.custom-background {
+    background-image: url('/images/background.png'); /* Œcie¿ka do obrazu t³a */
+    //background-size: cover; /* Dopasowanie obrazu do rozmiaru okna */
+    background-position: center; /* Wyœrodkowanie obrazu */
+    background-repeat: no-repeat; /* Brak powtarzania obrazu */
+    //opacity: 0.5; /* Przezroczystoœæ t³a */
+    padding: 10px; /* Opcjonalnie, aby dodaæ trochê przestrzeni wewnêtrznej */
+    border-radius: 10px; /* Zaokr¹glone rogi dla lepszego wygl¹du */
+    color: black;
+}
+*/

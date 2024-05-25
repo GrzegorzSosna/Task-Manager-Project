@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Projekt.Models.Task>
+
+@{
+    ViewData["Title"] = "Planowane zadania";
+}
+
+<h1>Planowane zadania</h1>
+
+<p>
+    <a asp-action="Create">Dodaj nowe zadanie</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCompleted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    var currentDate = DateTime.Now;
+    var isOverdue = item.Date < currentDate && !item.IsCompleted;
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @if (isOverdue)
+            {
+                <span style="color: red; font-weight: bold;">Czas na wykonanie zadania upłynął!!!</span><br />
+            }
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsCompleted)
+        </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
+        </td>
+    </tr>
+}
+    </tbody>
+</table>

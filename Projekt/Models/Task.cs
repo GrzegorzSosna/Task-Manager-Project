@@ -18,6 +18,9 @@ namespace Projekt.Models
         [Required]
         public string Description { get; set; } = string.Empty;
 
+        [Display(Name = "Kategoria zadania")]
+        public string TaskCategory { get; set; } = string.Empty;
+
         [Display(Name = "Czy ukończone?")]
         public bool IsCompleted { get; set; }
 

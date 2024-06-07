@@ -19,10 +19,6 @@ body {
     background: none; /* Ensure the body's background doesn't override the html background */
 }
 
-
-
-
-
 .header .navbar {
     background-color: #343a40 !important; /* Dark gray background for the navbar */
 }

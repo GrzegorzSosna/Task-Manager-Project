@@ -1,0 +1,59 @@
+﻿@model Projekt.Models.Statistic
+
+@{
+    ViewData["Title"] = "Statystyki";
+}
+
+<h1>Statystyki</h1>
+
+<div>
+    <div class="card-body">
+        <h5 class="card-title bg-secondary p-2 text-white rounded small"><b>Zadania w ostatnim tygodniu</b></h5>
+        <p>Wykonane: @Model.CompletedTasksLastWeek</p>
+        <p>Niewykonane: @Model.UncompletedTasksLastWeek</p>
+        <p>Skuteczność: @Model.EfficiencyLastWeek.ToString("0.0")%</p>
+    </div>
+</div>
+
+<div>
+    <div class="card-body">
+        <h5 class="card-title bg-secondary p-2 text-white rounded small"><b>Zadania w ostatnim miesiącu</b></h5>
+        <p>Wykonane: @Model.CompletedTasksLastMonth</p>
+        <p>Niewykonane: @Model.UncompletedTasksLastMonth</p>
+        <p>Skuteczność: @Model.EfficiencyLastMonth.ToString("0.0")%</p>
+    </div>
+</div>
+
+<div>
+    <div class="card-body">
+        <h5 class="card-title bg-secondary p-2 text-white rounded small"><b>Zadania w ostatnim roku</b></h5>
+        <p>Wykonane: @Model.CompletedTasksLastYear</p>
+        <p>Niewykonane: @Model.UncompletedTasksLastYear</p>
+        <p>Skuteczność: @Model.EfficiencyLastYear.ToString("0.0")%</p>
+    </div>
+</div>
+
+<div>
+    <div class="card-body">
+        <h4 class="card-title bg-secondary p-2 text-white rounded small"><b>Zadania według kategorii</b></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Kategoria</th>
+                    <th>Liczba zadań</th>
+                    <th>Skuteczność</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var categoryCount in Model.CategoryCounts)
+                {
+                    <tr>
+                        <td>@categoryCount.Category</td>
+                        <td>@categoryCount.Count</td>
+                        <td>@categoryCount.Efficiency.ToString("0.0")%</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

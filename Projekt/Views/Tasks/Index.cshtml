@@ -2,14 +2,45 @@
 
 @{
     ViewData["Title"] = "Planowane zadania";
+    var selectedCategory = ViewBag.SelectedCategory as string;
+    var categories = ViewBag.Categories as List<string>;
 }
+
+<style>
+    .table-sm th, .table-sm td {
+        padding: 0.3rem;
+    }
+
+    .alert-custom {
+        padding: 0.2rem 0.5rem;
+        margin-bottom: 0;
+    }
+</style>
 
 <h1>Planowane zadania</h1>
 
-<p>
-    <a asp-action="Create">Dodaj nowe zadanie</a>
-</p>
-<table class="table">
+<div class="d-flex align-items-center mb-3">
+    <a class="btn btn-primary mr-3" asp-action="Create">Dodaj nowe zadanie</a>
+    <form method="get" asp-action="Index" class="d-flex align-items-center">
+        <label for="category" class="mr-2">Kategoria:</label>
+        <select id="category" name="category" class="form-control ml-2" onchange="this.form.submit()">
+            <option value="">Wszystkie</option>
+            @foreach (var category in categories)
+            {
+                if (category == selectedCategory)
+                {
+                    <option value="@category" selected>@category</option>
+                }
+                else
+                {
+                    <option value="@category">@category</option>
+                }
+            }
+        </select>
+    </form>
+</div>
+
+<table class="table table-sm">
     <thead>
         <tr>
             <th>
@@ -19,35 +50,44 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.TaskCategory)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.IsCompleted)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-    var currentDate = DateTime.Now;
-    var isOverdue = item.Date < currentDate && !item.IsCompleted;
+        @foreach (var item in Model)
+        {
+            var currentDate = DateTime.Now;
+            var isOverdue = item.Date < currentDate && !item.IsCompleted;
 
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @if (isOverdue)
-            {
-                <span style="color: red; font-weight: bold;">Czas na wykonanie zadania upłynął!!!</span><br />
-            }
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsCompleted)
-        </td>
-        <td>
-            <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
-            <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
-        </td>
-    </tr>
-}
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @if (isOverdue)
+                    {
+                        <div class="alert alert-danger alert-custom" role="alert">
+                            Czas na wykonanie zadania upłynął!!!
+                        </div>
+                    }
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsCompleted)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

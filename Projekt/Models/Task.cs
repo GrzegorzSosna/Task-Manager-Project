@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Projekt.Models
 {
@@ -16,9 +17,11 @@ namespace Projekt.Models
 
         [Display(Name = "Opis zadania")]
         [Required]
+        [StringLength(100, ErrorMessage = "Opis zadania nie może mieć więcej niż 100 znaków.")]
         public string Description { get; set; } = string.Empty;
 
         [Display(Name = "Kategoria zadania")]
+        [StringLength(30, ErrorMessage = "Kategoria zadania nie może mieć więcej niż 30 znaków.")]
         public string TaskCategory { get; set; } = string.Empty;
 
         [Display(Name = "Czy ukończone?")]
@@ -28,4 +31,3 @@ namespace Projekt.Models
         public string UserId { get; set; } = Guid.NewGuid().ToString();
     }
 }
-
